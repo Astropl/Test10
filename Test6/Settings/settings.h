@@ -23,6 +23,12 @@ private slots:
 
     void on_btnShowMenuSettings_clicked();
 
+    void on_btnAnalizatory_clicked();
+
+    void on_btnKontrahent_clicked();
+
+    void on_btnDodajAnal_clicked();
+
 private:
     Ui::Settings *ui;
     QTimer *timer;

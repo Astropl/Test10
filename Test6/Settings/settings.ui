@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
+      <y>20</y>
       <width>131</width>
       <height>29</height>
      </rect>
@@ -45,8 +45,8 @@
      <rect>
       <x>10</x>
       <y>100</y>
-      <width>151</width>
-      <height>351</height>
+      <width>150</width>
+      <height>300</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -55,30 +55,30 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="btnAnalizatory">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>93</width>
-       <height>29</height>
+       <width>120</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>btnAnalizatory</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="btnKontrahent">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>50</y>
-       <width>93</width>
-       <height>29</height>
+       <width>120</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>btnKontrahent</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_3">
@@ -95,6 +95,81 @@
      </property>
     </widget>
    </widget>
+   <widget class="QFrame" name="frmRightAnalyser">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>90</y>
+      <width>481</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="lblDodajProducent">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>63</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineDodajProducent">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>20</y>
+       <width>181</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineDodajModel">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>60</y>
+       <width>181</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblDodajModel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>63</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnDodajAnal">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>110</y>
+       <width>93</width>
+       <height>29</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>btnDodajAnal</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -102,7 +177,7 @@
      <x>0</x>
      <y>0</y>
      <width>1173</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

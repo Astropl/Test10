@@ -12,6 +12,8 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -27,9 +29,15 @@ public:
     QPushButton *btnExit;
     QPushButton *btnShowMenuSettings;
     QFrame *frmMainLeft;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *btnAnalizatory;
+    QPushButton *btnKontrahent;
     QPushButton *pushButton_3;
+    QFrame *frmRightAnalyser;
+    QLabel *lblDodajProducent;
+    QLineEdit *lineDodajProducent;
+    QLineEdit *lineDodajModel;
+    QLabel *lblDodajModel;
+    QPushButton *btnDodajAnal;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -45,25 +53,45 @@ public:
         btnExit->setGeometry(QRect(990, 500, 93, 29));
         btnShowMenuSettings = new QPushButton(centralwidget);
         btnShowMenuSettings->setObjectName("btnShowMenuSettings");
-        btnShowMenuSettings->setGeometry(QRect(10, 50, 131, 29));
+        btnShowMenuSettings->setGeometry(QRect(10, 20, 131, 29));
         frmMainLeft = new QFrame(centralwidget);
         frmMainLeft->setObjectName("frmMainLeft");
-        frmMainLeft->setGeometry(QRect(10, 100, 151, 351));
+        frmMainLeft->setGeometry(QRect(10, 100, 150, 300));
         frmMainLeft->setFrameShape(QFrame::StyledPanel);
         frmMainLeft->setFrameShadow(QFrame::Raised);
-        pushButton = new QPushButton(frmMainLeft);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(10, 10, 93, 29));
-        pushButton_2 = new QPushButton(frmMainLeft);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(10, 50, 93, 29));
+        btnAnalizatory = new QPushButton(frmMainLeft);
+        btnAnalizatory->setObjectName("btnAnalizatory");
+        btnAnalizatory->setGeometry(QRect(10, 10, 120, 30));
+        btnKontrahent = new QPushButton(frmMainLeft);
+        btnKontrahent->setObjectName("btnKontrahent");
+        btnKontrahent->setGeometry(QRect(10, 50, 120, 30));
         pushButton_3 = new QPushButton(frmMainLeft);
         pushButton_3->setObjectName("pushButton_3");
         pushButton_3->setGeometry(QRect(10, 90, 93, 29));
+        frmRightAnalyser = new QFrame(centralwidget);
+        frmRightAnalyser->setObjectName("frmRightAnalyser");
+        frmRightAnalyser->setGeometry(QRect(260, 90, 481, 151));
+        frmRightAnalyser->setFrameShape(QFrame::StyledPanel);
+        frmRightAnalyser->setFrameShadow(QFrame::Raised);
+        lblDodajProducent = new QLabel(frmRightAnalyser);
+        lblDodajProducent->setObjectName("lblDodajProducent");
+        lblDodajProducent->setGeometry(QRect(30, 20, 63, 20));
+        lineDodajProducent = new QLineEdit(frmRightAnalyser);
+        lineDodajProducent->setObjectName("lineDodajProducent");
+        lineDodajProducent->setGeometry(QRect(120, 20, 181, 26));
+        lineDodajModel = new QLineEdit(frmRightAnalyser);
+        lineDodajModel->setObjectName("lineDodajModel");
+        lineDodajModel->setGeometry(QRect(120, 60, 181, 26));
+        lblDodajModel = new QLabel(frmRightAnalyser);
+        lblDodajModel->setObjectName("lblDodajModel");
+        lblDodajModel->setGeometry(QRect(30, 60, 63, 20));
+        btnDodajAnal = new QPushButton(frmRightAnalyser);
+        btnDodajAnal->setObjectName("btnDodajAnal");
+        btnDodajAnal->setGeometry(QRect(330, 110, 93, 29));
         Settings->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Settings);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1173, 26));
+        menubar->setGeometry(QRect(0, 0, 1173, 22));
         Settings->setMenuBar(menubar);
         statusbar = new QStatusBar(Settings);
         statusbar->setObjectName("statusbar");
@@ -79,9 +107,12 @@ public:
         Settings->setWindowTitle(QCoreApplication::translate("Settings", "MainWindow", nullptr));
         btnExit->setText(QCoreApplication::translate("Settings", "btnExit", nullptr));
         btnShowMenuSettings->setText(QCoreApplication::translate("Settings", "btnShowMenuSettings", nullptr));
-        pushButton->setText(QCoreApplication::translate("Settings", "PushButton", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Settings", "PushButton", nullptr));
+        btnAnalizatory->setText(QCoreApplication::translate("Settings", "btnAnalizatory", nullptr));
+        btnKontrahent->setText(QCoreApplication::translate("Settings", "btnKontrahent", nullptr));
         pushButton_3->setText(QCoreApplication::translate("Settings", "PushButton", nullptr));
+        lblDodajProducent->setText(QCoreApplication::translate("Settings", "TextLabel", nullptr));
+        lblDodajModel->setText(QCoreApplication::translate("Settings", "TextLabel", nullptr));
+        btnDodajAnal->setText(QCoreApplication::translate("Settings", "btnDodajAnal", nullptr));
     } // retranslateUi
 
 };
