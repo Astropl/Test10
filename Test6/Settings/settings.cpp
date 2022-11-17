@@ -1,5 +1,6 @@
 #include "settings.h"
 #include "ui_settings.h"
+#include "DBase/dbmain.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -62,16 +63,18 @@ void Settings::init()
     ui->frmRightAnalyser->setFixedHeight(150);
     ui->frmRightAnalyser->setFixedWidth(480);
 
-    ui->lblDodajModel->setText("TEMP");
+    ui->lblDodajModel->setText("Model: ");
     ui->lblDodajModel->setGeometry(30,20,65,20);
-    ui->lblDodajProducent->setText("TEMP");
+    ui->lblDodajProducent->setText("Producent");
     ui->lblDodajModel->setGeometry(30,60,65,20);
     ui->lineDodajProducent->setGeometry(120,20,180,25);
     ui->lineDodajModel->setGeometry(120,60,180,25);
 
   //TODO: dalej
 
-ui->btnDodajAnal->setText("TEMP");
+ui->btnDodajAnal->setText("Dodaj i Zapisz");
+
+
 
 
     ui->frmRightAnalyser->hide();
@@ -145,11 +148,21 @@ void Settings::on_btnDodajAnal_clicked()
     //Dodaj Analziaotr
     Qproducent = ui->lineDodajProducent->text();
     Qmodel = ui->lineDodajModel->text();
+    DbMain *mainDb = new DbMain(this);
 
 
     // Zapisane do bazy
     qWarning()<<"Producent to:"<<Qproducent;
     qWarning()<<"Model to: "<<Qmodel;
+
+    //NMajpierw Producent
+mainDb->addProducnet(Qproducent);
+mainDb->addModel(Qmodel, Qproducent);
+
+
+    //Teraz model + Id Producenta
+
+
     ui->frmRightAnalyser->hide();
     ui->lineDodajProducent->setText("");
     ui->lineDodajModel->setText("");

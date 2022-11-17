@@ -30,6 +30,7 @@ private slots:
     void on_btnExit_clicked();
     void on_btnAnalyserAdd_clicked();
     void on_pushButton_clicked();
+    void wypełnijNowyAnalizator();
 
 private:
     Ui::Test10 *ui;

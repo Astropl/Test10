@@ -14,74 +14,6 @@
    <string>Test10</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="frmMainLeft_2">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>340</y>
-      <width>211</width>
-      <height>191</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QPushButton" name="btnAnalyserAdd_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>93</width>
-       <height>29</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>btnAnalyserAdd</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnSettings_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>93</width>
-       <height>29</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>btnSettings</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btnReview_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>90</y>
-       <width>93</width>
-       <height>29</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>btnReview</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="btnExit_2">
-    <property name="geometry">
-     <rect>
-      <x>1070</x>
-      <y>530</y>
-      <width>93</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>btnExit</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnMenuHide">
     <property name="geometry">
      <rect>
@@ -108,10 +40,10 @@
    <widget class="QFrame" name="frmMainLeft">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>230</y>
-      <width>211</width>
-      <height>191</height>
+      <x>860</x>
+      <y>70</y>
+      <width>51</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -160,26 +92,13 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="btnMenuShow_2">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>170</y>
-      <width>93</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>btnMenuShow</string>
-    </property>
-   </widget>
    <widget class="QFrame" name="frmAddAnalisator">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>90</y>
-      <width>621</width>
-      <height>231</height>
+      <x>570</x>
+      <y>60</y>
+      <width>41</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -191,8 +110,8 @@
     <widget class="QPushButton" name="btnSaveAnal">
      <property name="geometry">
       <rect>
-       <x>390</x>
-       <y>100</y>
+       <x>190</x>
+       <y>60</y>
        <width>93</width>
        <height>29</height>
       </rect>
@@ -204,9 +123,9 @@
     <widget class="QComboBox" name="cbxAddProducent">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>111</width>
+       <x>50</x>
+       <y>100</y>
+       <width>131</width>
        <height>26</height>
       </rect>
      </property>
@@ -214,9 +133,9 @@
     <widget class="QComboBox" name="cbxAddModel">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>40</x>
        <y>40</y>
-       <width>101</width>
+       <width>131</width>
        <height>26</height>
       </rect>
      </property>
@@ -224,9 +143,9 @@
     <widget class="QLineEdit" name="lineAddSN">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>40</y>
-       <width>113</width>
+       <x>180</x>
+       <y>20</y>
+       <width>131</width>
        <height>26</height>
       </rect>
      </property>
@@ -234,9 +153,9 @@
     <widget class="QLabel" name="lblAddProducent">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>10</y>
-       <width>101</width>
+       <x>50</x>
+       <y>70</y>
+       <width>131</width>
        <height>20</height>
       </rect>
      </property>
@@ -247,9 +166,9 @@
     <widget class="QLabel" name="lblAddModel">
      <property name="geometry">
       <rect>
-       <x>182</x>
-       <y>10</y>
-       <width>91</width>
+       <x>50</x>
+       <y>60</y>
+       <width>131</width>
        <height>20</height>
       </rect>
      </property>
@@ -260,9 +179,9 @@
     <widget class="QLabel" name="lblAddSN">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>50</x>
        <y>10</y>
-       <width>63</width>
+       <width>131</width>
        <height>20</height>
       </rect>
      </property>
@@ -274,122 +193,14 @@
    <widget class="QPushButton" name="btnMenuShow">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>60</y>
+      <x>310</x>
+      <y>140</y>
       <width>93</width>
       <height>29</height>
      </rect>
     </property>
     <property name="text">
      <string>btnMenuShow</string>
-    </property>
-   </widget>
-   <widget class="QFrame" name="frmAddAnalisator_2">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>200</y>
-      <width>621</width>
-      <height>231</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QPushButton" name="btnSaveAnal_2">
-     <property name="geometry">
-      <rect>
-       <x>390</x>
-       <y>100</y>
-       <width>93</width>
-       <height>29</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>btnSaveAnal</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="cbxAddProducent_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>111</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="cbxAddModel_2">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>40</y>
-       <width>101</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineAddSN_2">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>40</y>
-       <width>113</width>
-       <height>26</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lblAddProducent_2">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>10</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>lblAddProducent</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lblAddModel_2">
-     <property name="geometry">
-      <rect>
-       <x>182</x>
-       <y>10</y>
-       <width>91</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>lblAddModel</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="lblAddSN_2">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>10</y>
-       <width>63</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>lblAddSN</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QTableView" name="tableView_2">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>450</y>
-      <width>511</width>
-      <height>192</height>
-     </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="btnExit">
@@ -425,7 +236,7 @@
      <x>0</x>
      <y>0</y>
      <width>1242</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

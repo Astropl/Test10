@@ -13,6 +13,8 @@
 
 int sprawdz =0;
 bool menuShow = "false";
+QString Qproducent1, Qmodel1, QnumerSeryjny1;
+
 
 using namespace std;
 
@@ -40,8 +42,9 @@ void Test10::initDB()
 }
 void Test10::wczytaj()
 { DbMain *dbMain  = new DbMain(this);
-    int pobierzUrzId = 0, k=0;
-     QString QStringPobierzAnalyser="";
+    int pobierzUrzId = 0;
+    int  k=0;
+    QString QStringPobierzAnalyser="";
     model = new QStandardItemModel(1, 6, this);
     ui->tableView->setModel(model);
 
@@ -64,15 +67,15 @@ void Test10::wczytaj()
     pobierzUrzId = dbMain->loadAnalyserId(pobierzUrzId);
     k=0;
     for (int i = 1; i <= pobierzUrzId; i++)
-    {for (int k=1;k<= 5;k++)
+    {for ( k=1;k<= 5;k++)
         {
-        QStringPobierzAnalyser = dbMain->loadAnalyser(QStringPobierzAnalyser, i, k);
-        //ui->comboBoxShowProducent->addItem(QStringPobierzAnalyser);
-        dodajItem = new QStandardItem(QStringPobierzAnalyser);
-        model->setItem(i - 1,k,  dodajItem);
+            QStringPobierzAnalyser = dbMain->loadAnalyser(QStringPobierzAnalyser, i, k);
+            //ui->comboBoxShowProducent->addItem(QStringPobierzAnalyser);
+            dodajItem = new QStandardItem(QStringPobierzAnalyser);
+            model->setItem(i - 1,k,  dodajItem);
 
-        qDebug() << QStringPobierzAnalyser;
-    }}
+            qDebug() << QStringPobierzAnalyser;
+        }}
 
 
 
@@ -85,14 +88,14 @@ void Test10::wczytaj()
     //QString *dodajItem= new QString ("kdsmgkfdmkgdfg");
 
 
-//    for (int i=0; i <= 5;i++)
-//    {
+    //    for (int i=0; i <= 5;i++)
+    //    {
 
-//        for (int j=0;j<=40;j++){
-//            dodajItem = new QStandardItem(pobierzUrz);
-//            pobierzUrz = pobierzUrz  ;
-//            model->setItem(j, i, dodajItem);
-//        }}
+    //        for (int j=0;j<=40;j++){
+    //            dodajItem = new QStandardItem(pobierzUrz);
+    //            pobierzUrz = pobierzUrz  ;
+    //            model->setItem(j, i, dodajItem);
+    //        }}
 
 
     //model->setItem(2, 3, dodajItem);
@@ -112,8 +115,8 @@ void Test10::wczytaj()
     //iloscWierszy();
     //qWarning()<<"Jestem w UrzadzeniaLista:WczytajDane:End";
     //ui->tableView->setColumnHidden(0,true);
-    QModelIndex index = ui->tableView->selectionModel()->currentIndex();
-ui->tableView->setColumnHidden(0,true);
+    // QModelIndex index = ui->tableView->selectionModel()->currentIndex();
+    ui->tableView->setColumnHidden(0,true);
 
 
 
@@ -131,12 +134,12 @@ void Test10::init()
 
     ui->frmAddAnalisator->setLineWidth(1);
     ui->frmAddAnalisator->setFrameStyle(1);
-    ui->frmAddAnalisator->setGeometry(210,60,720,450);
-    ui->frmAddAnalisator->setFixedWidth(720);
-    ui->frmAddAnalisator->setFixedHeight(250);
+    ui->frmAddAnalisator->setGeometry(210,60,490,150);
+    ui->frmAddAnalisator->setFixedWidth(490);
+    ui->frmAddAnalisator->setFixedHeight(150);
     ui->frmAddAnalisator->hide();
 
-    ui->btnExit->setText("Wyjście");
+
 
     ui->btnMenuHide->setText("Schowaj Menu");
     ui->btnMenuShow->setText("Pokaż Menu");
@@ -145,6 +148,7 @@ void Test10::init()
     ui->btnAnalyserAdd->setFixedWidth(150);
     ui->btnAnalyserAdd->setFixedHeight(30);
     ui->btnAnalyserAdd->setText("Dodaj Analizator");
+
     ui->btnSettings->setGeometry(10,260,10,10);
     ui->btnSettings->setFixedWidth(150);
     ui->btnSettings->setFixedHeight(30);
@@ -153,6 +157,21 @@ void Test10::init()
     ui->btnReview->setFixedWidth(150);
     ui->btnReview->setFixedHeight(30);
     ui->btnReview->setText("Przeglądy");
+
+    ui->lblAddProducent->setGeometry(20,10,130,20);
+    ui->lblAddProducent->setText("Wybierz Producenta");
+    ui->lblAddModel->setGeometry(180,10,130,20);
+    ui->lblAddModel->setText("Wybierz Model");
+
+    ui->lblAddSN->setText("Dodaj Numer Seryjny");
+    ui->lblAddSN->setGeometry(340,10,130,20);
+    ui->btnSaveAnal->setText("Zapisz Analizator");
+    ui->btnSaveAnal->setGeometry(360,100,110,30);
+    ui->btnExit->setText("Wyjście");
+    ui->cbxAddProducent->setGeometry(20,40,130,20);
+    ui->cbxAddModel->setGeometry(180,40,130,20);
+    ui->lineAddSN->setGeometry(340,40,130,20);
+
 
     initMenu();
 
@@ -207,10 +226,10 @@ void Test10::on_actionOpcje_triggered()
     cout<<"W ustawieniach"<<endl;
     Settings *settings = new Settings(this);
     settings->show();
-//    DbMain *mainDb = new DbMain(this);
-//    mainDb->init();
-//    AddAnalyser *addAnalyser = new AddAnalyser(this);
- //   addAnalyser->show();
+    //    DbMain *mainDb = new DbMain(this);
+    //    mainDb->init();
+    //    AddAnalyser *addAnalyser = new AddAnalyser(this);
+    //   addAnalyser->show();
 
 
 }
@@ -232,6 +251,8 @@ void Test10::on_btnMenuShow_clicked()
         }
         menuShow=false;
         ui->btnMenuShow->setText("Schowaj Menu");
+
+        wypełnijNowyAnalizator();
     }
     else if (menuShow==false)
     {
@@ -245,9 +266,50 @@ void Test10::on_btnMenuShow_clicked()
 
         }
         ui->frmMainLeft->hide();
+        //ui->frmMainLeft_2->hide();
+        ui->frmAddAnalisator->hide();
+        //ui->frmAddAnalisator_2->hide();
         menuShow=true;
         ui->btnMenuShow->setText("Pokąż Menu");
+
     }
+}
+
+void Test10::wypełnijNowyAnalizator()
+{
+    DbMain *dbMain  = new DbMain(this);
+
+    //Sprawdzić ile jest pozycji w bazie producent
+    int pobierzProducentId = 0, pobierzModelId =0;
+    QString pobierzProducent ="", pobierzModel="";
+
+
+    pobierzProducentId = dbMain->DbProducentLoadId(pobierzProducentId);
+    pobierzModelId= dbMain->DbModelLoadId(pobierzModelId);
+
+    qWarning()<<"Liczba pozycji w Bazie Producent to: "<<pobierzProducentId;
+
+    for (int i = 1; i <= pobierzProducentId; i++)
+    {
+        pobierzProducent=dbMain->DbProducentLoad(pobierzProducent,i);
+        ui->cbxAddProducent->addItem( pobierzProducent);
+
+    }
+    for (int i = 1; i <= pobierzModelId; i++)
+    {
+        pobierzModel=dbMain->DbModelLoad(pobierzModel,i);
+        ui->cbxAddModel->addItem( pobierzModel);
+
+    }
+    //Sprawdfzić ile jest pozycji w bazie modcel
+
+    // Wyciagan ac wszytskie stringi z producent i przypisać je do combo
+
+
+
+
+
+
 }
 void Test10::on_btnExit_clicked()
 {
