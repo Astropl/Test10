@@ -46,6 +46,11 @@ public:
     QPushButton *btnMenuShow;
     QPushButton *btnExit;
     QPushButton *btnMenuHide_2;
+    QPushButton *btnDownUp;
+    QFrame *frmDate;
+    QLabel *lblTime;
+    QLabel *lblDate;
+    QLabel *lblWeek;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -64,7 +69,7 @@ public:
         tableView->setGeometry(QRect(340, 340, 511, 192));
         frmMainLeft = new QFrame(centralwidget);
         frmMainLeft->setObjectName("frmMainLeft");
-        frmMainLeft->setGeometry(QRect(860, 70, 51, 51));
+        frmMainLeft->setGeometry(QRect(600, 120, 61, 41));
         frmMainLeft->setFrameShape(QFrame::StyledPanel);
         frmMainLeft->setFrameShadow(QFrame::Raised);
         btnAnalyserAdd = new QPushButton(frmMainLeft);
@@ -78,7 +83,7 @@ public:
         btnReview->setGeometry(QRect(10, 90, 93, 29));
         frmAddAnalisator = new QFrame(centralwidget);
         frmAddAnalisator->setObjectName("frmAddAnalisator");
-        frmAddAnalisator->setGeometry(QRect(570, 60, 41, 41));
+        frmAddAnalisator->setGeometry(QRect(570, 60, 121, 51));
         frmAddAnalisator->setFrameShape(QFrame::StyledPanel);
         frmAddAnalisator->setFrameShadow(QFrame::Raised);
         btnSaveAnal = new QPushButton(frmAddAnalisator);
@@ -111,6 +116,39 @@ public:
         btnMenuHide_2 = new QPushButton(centralwidget);
         btnMenuHide_2->setObjectName("btnMenuHide_2");
         btnMenuHide_2->setGeometry(QRect(350, 640, 93, 29));
+        btnDownUp = new QPushButton(centralwidget);
+        btnDownUp->setObjectName("btnDownUp");
+        btnDownUp->setGeometry(QRect(1000, 80, 20, 20));
+        frmDate = new QFrame(centralwidget);
+        frmDate->setObjectName("frmDate");
+        frmDate->setGeometry(QRect(1020, 20, 201, 80));
+        frmDate->setFrameShape(QFrame::StyledPanel);
+        frmDate->setFrameShadow(QFrame::Raised);
+        lblTime = new QLabel(frmDate);
+        lblTime->setObjectName("lblTime");
+        lblTime->setGeometry(QRect(10, 10, 71, 20));
+        QFont font;
+        font.setPointSize(10);
+        font.setBold(true);
+        lblTime->setFont(font);
+        lblTime->setFrameShape(QFrame::StyledPanel);
+        lblTime->setAlignment(Qt::AlignCenter);
+        lblDate = new QLabel(frmDate);
+        lblDate->setObjectName("lblDate");
+        lblDate->setGeometry(QRect(110, 10, 81, 20));
+        lblDate->setFont(font);
+        lblDate->setFrameShape(QFrame::StyledPanel);
+        lblDate->setAlignment(Qt::AlignCenter);
+        lblWeek = new QLabel(frmDate);
+        lblWeek->setObjectName("lblWeek");
+        lblWeek->setGeometry(QRect(20, 40, 171, 20));
+        QFont font1;
+        font1.setPointSize(12);
+        font1.setBold(true);
+        lblWeek->setFont(font1);
+        lblWeek->setFrameShape(QFrame::StyledPanel);
+        lblWeek->setAlignment(Qt::AlignCenter);
+        lblWeek->setWordWrap(false);
         Test10->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Test10);
         menubar->setObjectName("menubar");
@@ -139,6 +177,10 @@ public:
         btnMenuShow->setText(QCoreApplication::translate("Test10", "btnMenuShow", nullptr));
         btnExit->setText(QCoreApplication::translate("Test10", "btnExit", nullptr));
         btnMenuHide_2->setText(QCoreApplication::translate("Test10", "btnMenuHide", nullptr));
+        btnDownUp->setText(QCoreApplication::translate("Test10", "V", nullptr));
+        lblTime->setText(QCoreApplication::translate("Test10", "12:00:00", nullptr));
+        lblDate->setText(QCoreApplication::translate("Test10", "1900:01:01", nullptr));
+        lblWeek->setText(QCoreApplication::translate("Test10", "Poniedzia\305\202ek", nullptr));
     } // retranslateUi
 
 };

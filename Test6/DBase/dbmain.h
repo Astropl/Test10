@@ -29,14 +29,14 @@ QString addKontrahent(QString l1, QString l2,QString l3,QString l4,QString l5,QS
 void DbProducent ();
 
 void DbModel();
-QString addProducnet (QString daneProducent);
+QString addProducent (QString daneProducent);
 
 QString addModel (QString daneProducent, QString daneModel);
 int DbProducentLoadId (int rows);
 QString DbProducentLoad (QString daneModel, int i);
 int DbModelLoadId (int rows);
 QString DbModelLoad (QString daneModel, int i);
-
+QString saveAnalyser (QString daneProducent, QString daneModel, QString numerSeryjny);
 
 
 

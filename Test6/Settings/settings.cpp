@@ -17,6 +17,8 @@ using namespace std;
 bool menuShowSettings;
 QString Qproducent;
 QString Qmodel;
+QString QnumerSeryjny;
+
 
 Settings::Settings(QWidget *parent) :
     QMainWindow(parent),
@@ -156,7 +158,7 @@ void Settings::on_btnDodajAnal_clicked()
     qWarning()<<"Model to: "<<Qmodel;
 
     //NMajpierw Producent
-mainDb->addProducnet(Qproducent);
+mainDb->addProducent(Qproducent);
 mainDb->addModel(Qmodel, Qproducent);
 
 

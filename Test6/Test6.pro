@@ -11,12 +11,16 @@ CONFIG += c++17
 SOURCES += \
     DBase/dbmain.cpp \
     Settings/settings.cpp \
+    Timery/dates.cpp \
+    Timery/timedate.cpp \
     main.cpp \
     test10.cpp
 
 HEADERS += \
     DBase/dbmain.h \
     Settings/settings.h \
+    Timery/dates.h \
+    Timery/timedate.h \
     test10.h
 
 FORMS += \

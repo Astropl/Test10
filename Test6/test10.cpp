@@ -1,7 +1,7 @@
 #include "test10.h"
 #include "ui_test10.h"
 #include "Settings/settings.h"
-//#include "Settings/addanalyser.h"
+#include "Timery/timedate.h"
 #include "DBase/dbmain.h"
 #include <iostream>
 #include <thread>
@@ -24,13 +24,54 @@ Test10::Test10(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Test10)
 {
+
+    //---------Sekcja generacji timera
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(myfunctiontimer()));
+    timer->start(1000);
+    //===================
     ui->setupUi(this);
     initDB();
     init();
     wczytaj();
 
 }
+void Test10::myfunctiontimer()
+{
+    time_t czas;
+    tm timeinfo;
 
+    QString qStrMin, qStrGodz, qStrSek, qStrDzien, qStrMiesiac, stringDzienTygodnia;
+
+    TimeDate *timeDate = new TimeDate();
+
+    time(&czas);
+    timeinfo = *localtime(&czas);
+    int godzina = timeinfo.tm_hour;
+    int minuta = timeinfo.tm_min;
+    int sekunda = timeinfo.tm_sec;
+    int dzien = timeinfo.tm_mday;
+    int miesiac = timeinfo.tm_mon;
+    int rok = timeinfo.tm_year;
+    int dzienTygodnia = timeinfo.tm_wday;
+    miesiac = miesiac + 1;
+    rok = rok + 1900;
+    dzienTygodnia = dzienTygodnia + 1;
+
+    qStrMin = timeDate->changeStringsMin(minuta);
+    qStrSek = timeDate->changeStringsSek(sekunda);
+    qStrDzien = timeDate->changeStringsDzien(dzien);
+    qStrGodz = timeDate->changeStringsGodz(godzina);
+    qStrMiesiac = timeDate->changeStringsMiesiac(miesiac);
+    stringDzienTygodnia = timeDate->changeStringsDzienTygodnia(dzienTygodnia);
+
+    ui->lblTime->setText(qStrGodz + ":" + qStrMin + ":" + qStrSek);
+    ui->lblDate->setText(QString::number(rok) + "." + qStrMiesiac + "." + qStrDzien);
+
+    ui->lblWeek->setText(stringDzienTygodnia);
+
+    wczytaj(); // Wczytywanie co sekundę odswieżonych info o analizatorach
+}
 Test10::~Test10()
 {
     delete ui;
@@ -74,7 +115,7 @@ void Test10::wczytaj()
             dodajItem = new QStandardItem(QStringPobierzAnalyser);
             model->setItem(i - 1,k,  dodajItem);
 
-            qDebug() << QStringPobierzAnalyser;
+            //qDebug() << QStringPobierzAnalyser;
         }}
 
 
@@ -131,15 +172,12 @@ void Test10::init()
     ui->frmMainLeft->setFixedHeight(300);
     ui->frmMainLeft->hide();
 
-
     ui->frmAddAnalisator->setLineWidth(1);
     ui->frmAddAnalisator->setFrameStyle(1);
     ui->frmAddAnalisator->setGeometry(210,60,490,150);
     ui->frmAddAnalisator->setFixedWidth(490);
     ui->frmAddAnalisator->setFixedHeight(150);
     ui->frmAddAnalisator->hide();
-
-
 
     ui->btnMenuHide->setText("Schowaj Menu");
     ui->btnMenuShow->setText("Pokaż Menu");
@@ -172,6 +210,16 @@ void Test10::init()
     ui->cbxAddModel->setGeometry(180,40,130,20);
     ui->lineAddSN->setGeometry(340,40,130,20);
 
+    //Timery
+    ui->frmDate->setGeometry(1020,20,200,80);
+    ui->frmDate->setLineWidth(1);
+    ui->frmDate->setFrameStyle(1);
+    ui->lblTime->setGeometry(10,10,70,20);
+    ui->lblDate->setGeometry(110,10,80,20);
+    ui->lblWeek->setGeometry(20,40,170,20);
+    ui->btnDownUp->setGeometry(1000,80,20,20);
+    ui->btnDownUp->setText("V");
+    //Timery-End
 
     initMenu();
 
@@ -223,7 +271,7 @@ void Test10::initMenu()
 }
 void Test10::on_actionOpcje_triggered()
 {
-    cout<<"W ustawieniach"<<endl;
+    //cout<<"W ustawieniach"<<endl;
     Settings *settings = new Settings(this);
     settings->show();
     //    DbMain *mainDb = new DbMain(this);
@@ -239,7 +287,7 @@ void Test10::on_btnMenuShow_clicked()
     {
         ui->frmMainLeft->setFixedSize(0, 0);
         int x=0,y=300;
-        cout<<"Polski"<<endl;
+        //cout<<"Polski"<<endl;
         ui->frmMainLeft->show();
         //scroll(x,y);
         for (int x1 = x; x1 <= 170; x1++) {
@@ -252,7 +300,7 @@ void Test10::on_btnMenuShow_clicked()
         menuShow=false;
         ui->btnMenuShow->setText("Schowaj Menu");
 
-        wypełnijNowyAnalizator();
+        wypelnijNowyAnalizator();
     }
     else if (menuShow==false)
     {
@@ -275,7 +323,7 @@ void Test10::on_btnMenuShow_clicked()
     }
 }
 
-void Test10::wypełnijNowyAnalizator()
+void Test10::wypelnijNowyAnalizator()
 {
     DbMain *dbMain  = new DbMain(this);
 
@@ -287,7 +335,7 @@ void Test10::wypełnijNowyAnalizator()
     pobierzProducentId = dbMain->DbProducentLoadId(pobierzProducentId);
     pobierzModelId= dbMain->DbModelLoadId(pobierzModelId);
 
-    qWarning()<<"Liczba pozycji w Bazie Producent to: "<<pobierzProducentId;
+    //qWarning()<<"Liczba pozycji w Bazie Producent to: "<<pobierzProducentId;
 
     for (int i = 1; i <= pobierzProducentId; i++)
     {
@@ -305,11 +353,6 @@ void Test10::wypełnijNowyAnalizator()
 
     // Wyciagan ac wszytskie stringi z producent i przypisać je do combo
 
-
-
-
-
-
 }
 void Test10::on_btnExit_clicked()
 {
@@ -323,3 +366,25 @@ void Test10::on_pushButton_clicked()
 {
     ui->frmAddAnalisator->hide();
 }
+
+void Test10::on_btnSaveAnal_clicked()
+{
+    //Zapisanie analizatora z numerem seryjnym
+    //qWarning()<<"Zapisuje analizator do BD";
+    DbMain *dbMain  = new DbMain(this);
+
+    Qproducent1=ui->cbxAddProducent->currentText();
+    Qmodel1=ui->cbxAddModel->currentText();
+    QnumerSeryjny1=ui->lineAddSN->text();
+
+
+
+//    qWarning()<<"Spra producent"<<Qproducent1;
+//    qWarning()<<"Spra model"<<Qmodel1;
+//    qWarning()<<"Spra SN"<< QnumerSeryjny1;
+    dbMain->saveAnalyser(Qproducent1, Qmodel1, QnumerSeryjny1);
+
+
+
+}
+

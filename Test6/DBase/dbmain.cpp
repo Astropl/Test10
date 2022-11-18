@@ -17,7 +17,7 @@ DbMain::DbMain(QWidget *parent) :
     ui(new Ui::DbMain)
 {
     ui->setupUi(this);
-    cout<<"KJestem w Main DB0" <<endl;
+    //cout<<"KJestem w Main DB0" <<endl;
 
 
 
@@ -30,7 +30,7 @@ DbMain::~DbMain()
 
 void DbMain::init ()
 {
-    cout<<"aaaaaJestem w Main DB0" <<endl;
+    //cout<<"aaaaaJestem w Main DB0" <<endl;
     DatabaseConnect();
     // DatabaseInit();
     DatabasePopulate();
@@ -38,38 +38,38 @@ void DbMain::init ()
 
 void DbMain::DatabaseConnect()
 {
-    qWarning("Database Connect");
+    //qWarning("Database Connect");
     const QString DRIVER("QSQLITE");
     if (QSqlDatabase::isDriverAvailable(DRIVER)) {
         QSqlDatabase db = QSqlDatabase::addDatabase(DRIVER);
         db.setDatabaseName(
                     "C:/Users/pawel/Documents/Cplusplus/Test10/Test6/DBase/2022.11.02.db");
-        qWarning(" Powstała baza");
+        //qWarning(" Powstała baza");
 
         if (db.open()) {
-            qWarning() << (" Otwarto DB") << db.lastError().text();
-            qWarning() << (" Otwarto DB") << db.isDriverAvailable(DRIVER);
+            //qWarning() << (" Otwarto DB") << db.lastError().text();
+            //qWarning() << (" Otwarto DB") << db.isDriverAvailable(DRIVER);
             //qWarning() << (" Otwarto DB") << db.connectOptions().
         } else {
-            qWarning() << (" Brak otwarcia") << db.lastError().text();
+            //qWarning() << (" Brak otwarcia") << db.lastError().text();
         }
     }
 }
 
 void DbMain::DatabasePopulate()
 {
-    qWarning("Database Wypelnianiae");
+    //qWarning("Database Wypelnianiae");
     DbAnalysers();
     DbProducent();
     DbModel();
-
+dBKontrahent();
     //dBMiasta();
     //dBWojewodztwa();
     // dBKraj();
     // dBProducent();
     // dBModel();
     // dBUrzadzenia();
-    dBKontrahent();
+
     //  dBBaza();
     // dBPrzypomnienie();
     //  dBStatistisc();
@@ -80,7 +80,7 @@ void DbMain::dBKontrahent()
 {
     QSqlQuery query;
     query.exec("PRAGMA foreign_keys = ON;"); // włączenia kluczy obcych"
-    qWarning("Tworzenie tabeli Kontrahenci ");
+    //qWarning("Tworzenie tabeli Kontrahenci ");
 
     query.exec("CREATE TABLE IF NOT EXISTS Kontrahent (id INTEGER PRIMARY KEY, nazwaFirmy "
                "TEXT UNIQUE, imie TEXT, nazwisko TEXT, kontrahent_panstwo_id TEXT, "
@@ -95,7 +95,7 @@ void DbMain::dBKontrahent()
                "FOREIGN KEY (urzadzenia_numer_seryjny ) REFERENCES urzadzenia (numerSeryjny)  )");
 
     if (!query.isActive()) {
-         qWarning() << " Tworzenie Tabeli - ERROR: " << query.lastError().text();
+        // qWarning() << " Tworzenie Tabeli - ERROR: " << query.lastError().text();
     }
     if (!query.exec("INSERT INTO Kontrahent (nazwaFirmy , imie , nazwisko , kontrahent_panstwo_id "
                     ", kontrahent_wojewodztwo_id , kontrahent_miasto_id , kodPocztowy , ulica , "
@@ -103,15 +103,15 @@ void DbMain::dBKontrahent()
                     "VALUES('VITAKO' , 'Paweł' , 'Martys' , 'Polska' , "
                     "'Zachodniopomorskie' , 'Szczecin' , '71-766' , 'Małej Syrenki' , '2' , "
                     "'692717987' , '723508531' , 'serwis@vbody.pl' , 'www.vitako.pl')")) {
-        qWarning() << "MainWindow::DatabasePopulate - ERROR: " << query.lastError().text();
+        //qWarning() << "MainWindow::DatabasePopulate - ERROR: " << query.lastError().text();
     }
-     qWarning("Tworzenie tabeli Kontrahent - Zakończone ");
+     //qWarning("Tworzenie tabeli Kontrahent - Zakończone ");
 
 
 
 }
 QString DbMain::loadAnalyser (QString daneModel, int i, int k)
-{qWarning("******dbMain::loadAnalysers");
+{//qWarning("******dbMain::loadAnalysers");
     QSqlQuery query;
     QString name;
     QString inti = QString::number(i);
@@ -154,7 +154,7 @@ QString DbMain::DbModelLoad (QString daneModel, int i)
 }
 int DbMain::loadAnalyserId(int rows) //int MainDb::pobierzKrajId(int pobierzKrajId)
 
-{qWarning("******dbMain::loadAnalysersId");
+{//qWarning("******dbMain::loadAnalysersId");
     QSqlQuery query;
     rows = 0;
 
@@ -171,8 +171,6 @@ int DbMain::DbModelLoadId (int rows)
 {
     QSqlQuery query;
     rows = 0;
-
-
     if (query.exec("SELECT * FROM model")) {
         while (query.next()) {
             rows++;
@@ -184,8 +182,6 @@ int DbMain::DbProducentLoadId (int rows)
 {
     QSqlQuery query;
     rows = 0;
-
-
     if (query.exec("SELECT * FROM producent")) {
         while (query.next()) {
             rows++;
@@ -197,36 +193,33 @@ void DbMain::DbProducent ()
 {
     QSqlQuery query;
     query.exec("PRAGMA foreign_keys = ON;"); // włączenia kluczy obcych"
-    qWarning("Tworzenie tabeli Producent ");
+    //qWarning("Tworzenie tabeli Producent ");
 
-    query.exec("CREATE TABLE IF NOT EXISTS producent (id INTEGER PRIMARY KEY, producent TEXT  )");
+    query.exec("CREATE TABLE IF NOT EXISTS producent (id INTEGER PRIMARY KEY, producent TEXT UNIQUE  )");
     if (!query.isActive()) {
-        qWarning() << "1. Tworzenie Tabeli:DBproducent- ERROR: " << query.lastError().text();
+        //qWarning() << "1. Tworzenie Tabeli:DBproducent- ERROR: " << query.lastError().text();
     }
     if (!query.exec("INSERT INTO producent (producent) VALUES('Jawon')")) {
-        qWarning() << "2. INSERT INTO tabela:DBproducent - ERROR: " << query.lastError().text();
+        //qWarning() << "2. INSERT INTO tabela:DBproducent - ERROR: " << query.lastError().text();
     }
 
-    qWarning("Tworzenie tabeli DBproducent - Zakończone ");
-
-
+    //qWarning("Tworzenie tabeli DBproducent - Zakończone ");
 }
 void DbMain::DbModel()
 {
     QSqlQuery query;
     query.exec("PRAGMA foreign_keys = ON;"); // włączenia kluczy obcych"
-    qWarning("Tworzenie tabeli Model ");
+    //qWarning("Tworzenie tabeli Model ");
 
-    query.exec("CREATE TABLE IF NOT EXISTS model (id INTEGER PRIMARY KEY, model TEXT, producent TEXT  )");
+    query.exec("CREATE TABLE IF NOT EXISTS model (id INTEGER PRIMARY KEY, model TEXT UNIQUE, producent TEXT UNIQUE  )");
     if (!query.isActive()) {
-        qWarning() << "1. Tworzenie Tabeli:DBmodel- ERROR: " << query.lastError().text();
+        //qWarning() << "1. Tworzenie Tabeli:DBmodel- ERROR: " << query.lastError().text();
     }
     if (!query.exec("INSERT INTO model (model, producent ) VALUES('IOI-353TEST', 'Jawon')")) {
-        qWarning() << "2. INSERT INTO tabela:DBmodel - ERROR: " << query.lastError().text();
+        //qWarning() << "2. INSERT INTO tabela:DBmodel - ERROR: " << query.lastError().text();
     }
 
-    qWarning("Tworzenie tabeli model - Zakończone ");
-
+    //qWarning("Tworzenie tabeli model - Zakończone ");
 }
 
 void DbMain::DbAnalysers ()
@@ -237,67 +230,54 @@ void DbMain::DbAnalysers ()
 
     QSqlQuery query;
     query.exec("PRAGMA foreign_keys = ON;"); // włączenia kluczy obcych"
-    qWarning("Tworzenie tabeli Urzadzenia ");
+    //qWarning("Tworzenie tabeli Urzadzenia ");
 
-    query.exec("CREATE TABLE IF NOT EXISTS urzadzenia (id INTEGER PRIMARY KEY, urzadzenia_producent_id TEXT, urzadzenia_model_id TEXT, urzadzenia_numerSeryjny TEXT  )");
+    query.exec("CREATE TABLE IF NOT EXISTS urzadzenia (id INTEGER PRIMARY KEY, urzadzenia_producent_id TEXT, urzadzenia_model_id TEXT, urzadzenia_numerSeryjny TEXT UNIQUE )");
     if (!query.isActive()) {
-        qWarning() << "1. Tworzenie Tabeli:DBUrzadzenia- ERROR: " << query.lastError().text();
+       // qWarning() << "1. Tworzenie Tabeli:DBUrzadzenia- ERROR: " << query.lastError().text();
     }
     if (!query.exec("INSERT INTO urzadzenia (urzadzenia_producent_id , urzadzenia_model_id, urzadzenia_numerSeryjny) VALUES('Jawon', 'IOI-353', 'AN TESTOWY')")) {
-        qWarning() << "2. INSERT INTO tabela:DBUrzadzenia - ERROR: " << query.lastError().text();
+        //qWarning() << "2. INSERT INTO tabela:DBUrzadzenia - ERROR: " << query.lastError().text();
     }
 
-    qWarning("Tworzenie tabeli Urzadzenia - Zakończone ");
-
+    //qWarning("Tworzenie tabeli Urzadzenia - Zakończone ");
 
 }
-QString DbMain::addProducnet (QString daneProducent)
+QString DbMain::addProducent (QString daneProducent)
 {
     QSqlQuery query;
-    qWarning()<<"Zapisuje do bazy Urzadzenia";
-    qWarning ()<<" Mam producenta"<<daneProducent;
+    //qWarning()<<"Zapisuje do bazy Urzadzenia";
+    //qWarning ()<<" Mam producenta"<<daneProducent;
 
 
     //qWarning ()<<" i mam serial"<<daneNrSeryjny;
     query.exec("PRAGMA foreign_keys = ON;"); // włączenia kluczy obcych
 
     if (!query.exec("INSERT INTO producent (producent) VALUES('" + daneProducent + "' )")) {
-        qWarning() << "MainDB::Dodoanie Urzadzenia - ERROR: " << query.lastError().text();
+        //qWarning() << "MainDB::Dodoanie Urzadzenia - ERROR: " << query.lastError().text();
     } else {
-        qWarning() << "MainDB::Dodoanie Urzadzenia - Udane: " << query.lastError().text();
+        //qWarning() << "MainDB::Dodoanie Urzadzenia - Udane: " << query.lastError().text();
     }
     return 0;
-
 }
 QString DbMain::addModel (QString daneModel,
                               QString daneProducent)
 {
     QSqlQuery query;
-    qWarning()<<"Zapisuje do bazy Urzadzenia";
-    qWarning ()<<" Mam producenta"<<daneProducent;
-    qWarning ()<<" Mam model"<<daneModel;
+    //qWarning()<<"Zapisuje do bazy Urzadzenia";
+    //qWarning ()<<" Mam producenta"<<daneProducent;
+    //qWarning ()<<" Mam model"<<daneModel;
 
     //qWarning ()<<" i mam serial"<<daneNrSeryjny;
     query.exec("PRAGMA foreign_keys = ON;"); // włączenia kluczy obcych
 
     if (!query.exec("INSERT INTO model (model, producent) VALUES('"
                     +  daneModel + "','" + daneProducent + "' )")) {
-        qWarning() << "MainDB::Dodoanie Urzadzenia - ERROR: " << query.lastError().text();
+       // qWarning() << "MainDB::Dodoanie Urzadzenia - ERROR: " << query.lastError().text();
     } else {
-        qWarning() << "MainDB::Dodoanie Urzadzenia - Udane: " << query.lastError().text();
+        //qWarning() << "MainDB::Dodoanie Urzadzenia - Udane: " << query.lastError().text();
     }
     return 0;
-
-
-
-
-
-
-
-
-
-
-
 }
 QString DbMain::addKontrahent(QString l1, QString l2,QString l3,QString l4,QString l5,QString l6,QString l7,QString l8,QString l9,QString l10,QString l11,QString l12,QString l13)
 {
@@ -314,15 +294,24 @@ QString DbMain::addKontrahent(QString l1, QString l2,QString l3,QString l4,QStri
                  + l13 + "')"))
 
  {
-     qWarning() << "MainDB::Dodoanie Urzadzenia - ERROR: " << query.lastError().text();
+     //qWarning() << "MainDB::Dodoanie Urzadzenia - ERROR: " << query.lastError().text();
  } else {
-     qWarning() << "MainDB::Dodoanie Kontrahenci - Udane: " << query.lastError().text();
+     //qWarning() << "MainDB::Dodoanie Kontrahenci - Udane: " << query.lastError().text();
  }
  return 0;
-
-
-
-
 }
-// TODO: Dorobic tak zeby gdy wybiorę dopisanie producenta to mogę. ale gdy wybiore model to wymusi na mnie wybór producenta
 
+// TODO: Dorobic tak zeby gdy wybiorę dopisanie producenta to mogę. ale gdy wybiore model to wymusi na mnie wybór producenta
+QString DbMain::saveAnalyser (QString daneProducent, QString daneModel, QString numerSeryjny)
+{//qWarning("******dbMain::loadAnalysers");
+    QSqlQuery query;
+    //QString name;
+    //QString inti = QString::number(i);
+    if (!query.exec("INSERT INTO urzadzenia (urzadzenia_producent_id , urzadzenia_model_id , urzadzenia_numerSeryjny) VALUES('"
+                    +  daneProducent + "','" + daneModel  +"','" +numerSeryjny+ "' )")) {
+        //qWarning() << "MainDB::Dodoanie Urzadzenia - ERROR: " << query.lastError().text();
+    } else {
+        //qWarning() << "MainDB::Dodoanie Urzadzenia - Udane: " << query.lastError().text();
+    }
+   return 0;
+}
